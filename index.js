@@ -1,4 +1,8 @@
-/* DOM elements*/
+/* 
+================
+DOM elements
+================
+*/
 const formCreate = document.getElementById("form-create");
 const formEdit = document.getElementById("form-edit");
 const listGroupTodo = document.getElementById("list-group-todo");
@@ -172,7 +176,7 @@ closeEl.addEventListener("click", () => {
 });
 
 document.addEventListener("keydown", (e) => {
-  if ((e.which == 27)) {
+  if (e.which == 27) {
     closeModal();
   }
 });
