@@ -37,8 +37,20 @@ if (todos.length) {
 */
 function getTime() {
   const now = new Date();
-  const date = now.getDate() < 10 ? "0" + now.getDate() : now.getDate();
-  const month = now.getMonth() < 10 ? "0" + now.getMonth() + 1 : now.getMonth();
+  let date;
+  //  now.getDate() < 10 ? "0" + now.getDate() : now.getDate();
+  let month;
+  // now.getMonth() < 10 ? "0" + (now.getMonth() + 1) : now.getMonth();
+  if (now.getDate() < 10) {
+    date = "0" + (now.getDate() + 1);
+  } else {
+    date = now.getDate();
+  }
+  if (now.getMonth() < 10) {
+    month = "0" + (now.getMonth() + 1);
+  } else {
+    month = now.getMonth();
+  }
   const year = now.getFullYear();
 
   const hour = now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
@@ -94,11 +106,13 @@ function showMessage(where, message) {
 }
 
 function showTodos() {
+  let randomNum = Math.floor(Math.random() * colors.length);
   const todos = JSON.parse(localStorage.getItem("list"));
   listGroupTodo.innerHTML = "";
   todos.forEach((item, index) => {
     listGroupTodo.innerHTML += `
-    <li ondblclick=(setCompleted(${index})) class="list-group-item d-flex justify-content-between ${
+    <li
+      ondblclick=(setCompleted(${index})) class="list-group-item d-flex justify-content-between ${
       item.completed == true ? "completed" : ""
     }">${item.text}
         <div class="todo-icons">
